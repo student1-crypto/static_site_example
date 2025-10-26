@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ProjectX — Crypto</title>
+<meta name="description" content="ProjectX — lightweight static site for crypto projects" />
+<style>
+  :root{
+    --bg:#0b1020;
+    --card:#0f1724;
+    --muted:#9aa3b2;
+    --accent:#4cc0ff;
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+    --maxW:1100px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,Segoe UI,Roboto,Arial;
+    background:linear-gradient(180deg,#05060a 0%,var(--bg) 100%);
+    color:#e6eef6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  .container{max-width:var(--maxW);margin:0 auto;padding:28px;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:sticky;top:0;background:transparent;backdrop-filter:blur(6px);z-index:40}
+  .nav-inner{display:flex;align-items:center;gap:28px;width:100%}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:700}
+  .logo .mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#6b8bff);display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:#041824}
+  .menu{display:flex;gap:12px;align-items:center;margin-left:auto}
+  .menu a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+  .menu a:hover{color:#fff;background:var(--glass)}
+  .cta{padding:8px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6b8bff);color:#041824;font-weight:700;text-decoration:none}
+
+  .burger{display:none;background:none;border:0;color:var(--muted);font-size:22px}
+  .mobile-menu{display:none;flex-direction:column;gap:8px;padding:12px;margin-top:10px;background:transparent}
+
+  .hero{display:block;padding:56px 0}
+  .hero h1{font-size:40px;margin:0 0 12px}
+  .lead{color:var(--muted);margin-bottom:20px}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--radius);padding:18px}
+
+  .stats{display:flex;gap:12px;flex-wrap:wrap}
+  .stat{flex:1;min-width:140px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));text-align:center}
+  .stat .num{font-size:20px;font-weight:800}
+  .stat .label{color:var(--muted);font-size:13px;margin-top:6px}
+
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0}
+  .feature{padding:18px;border-radius:12px;background:var(--card)}
+  .feature h3{margin:0 0 8px;font-size:16px}
+  .feature p{margin:0;color:var(--muted);font-size:14px}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .tokenomics{display:flex;flex-direction:column;gap:12px}
+  .bar{height:12px;background:#081017;border-radius:8px;overflow:hidden}
+  .seg{height:100%;display:inline-block}
+
+  .roadmap{display:flex;flex-direction:column;gap:12px}
+  .rm-item{display:flex;gap:12px;align-items:flex-start}
+  .rm-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:6px}
+  .rm-body{background:var(--glass);padding:12px;border-radius:10px;color:var(--muted)}
+
+  footer{padding:36px 0 80px;color:var(--muted);font-size:14px}
+
+  @media(max-width:900px){
+    .features{grid-template-columns:1fr 1fr}
+    .grid-2{grid-template-columns:1fr}
+    .menu{display:none}
+    .burger{display:inline-block}
+    .mobile-menu{display:flex}
+  }
+  @media(max-width:520px){
+    .features{grid-template-columns:1fr}
+  }
+
+  section{padding:40px 0;border-bottom:1px solid rgba(255,255,255,0.02)}
+  .small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav class="container" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo" aria-label="ProjectX home">
+      <span class="mark">PX</span>
+      <span>ProjectX</span>
+    </a>
+
+    <div class="menu" id="desktopMenu">
+      <a href="#about">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="#swap">Buy</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="open menu">☰</button>
+  </div>
+
+  <div class="container mobile-menu" id="mobileMenu" style="display:none">
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#faq">FAQ</a>
+    <a class="cta" href="#swap">Buy</a>
+  </div>
+</nav>
+
+<main class="container">
+  <section id="home" class="hero">
+    <div>
+      <div class="small">Mainnet • Audit Pending • Low Supply</div>
+      <h1>ProjectX — Fast and Lightweight Token Infrastructure</h1>
+      <p class="lead">A minimal UX layer for decentralized swaps, liquidity rewards, and on-chain governance. Designed for rapid adoption.</p>
+
+      <div class="actions">
+        <a class="cta" href="#swap">Buy on DEX</a>
+        <a class="card" href="#about" style="text-decoration:none;color:inherit;padding:12px 14px">Whitepaper</a>
+        <a class="card" href="#tokenomics" style="text-decoration:none;color:inherit;padding:12px 14px">Tokenomics</a>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <div class="stats" aria-hidden="true">
+        <div class="stat card">
+          <div class="num">1000</div>
+          <div class="label">Holders</div>
+        </div>
+        <div class="stat card">
+          <div class="num">420</div>
+          <div class="label">Total Supply (k)</div>
+        </div>
+        <div class="stat card">
+          <div class="num">12</div>
+          <div class="label">Listed Exchanges</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="card">
+      <h2 style="margin:0 0 8px">About ProjectX</h2>
+      <p class="small">ProjectX aims for fast circulation with a simple UX and transparent tokenomics. Built with ultra-light smart contracts and an auto-reward mechanism.</p>
+    </div>
+
+    <div class="features" aria-hidden="false">
+      <div class="feature">
+        <h3>Audit Ready</h3>
+        <p>Code readability first — designed for quick auditing.</p>
+      </div>
+      <div class="feature">
+        <h3>Auto LP</h3>
+        <p>A portion of each transaction automatically adds to liquidity for stability.</p>
+      </div>
+      <div class="feature">
+        <h3>Governance</h3>
+        <p>Token-based governance module enables community-driven decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <div class="grid-2">
+      <div class="card tokenomics">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h3 style="margin:0">Total Supply</h3>
+            <div class="small">420,000 TOKEN</div>
+          </div>
+          <div style="text-align:right">
+            <div class="small">Ticker</div>
+            <div style="font-weight:800">PX</div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="small">Liquidity</div><div class="small">40%</div></div>
+          <div class="bar"><div class="seg" style="width:40%;background:linear-gradient(90deg,var(--accent),#6b8bff)"></div></div>
+
+          <div style="height:8px"></div>
+
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="small">Team</div><div class="small">10% (vesting)</div></div>
+          <div class="bar"><div class="seg" style="width:10%;background:#ffb86b"></div></div>
+
+          <div style="height:8px"></div>
+
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="small">Marketing</div><div class="small">15%</div></div>
+          <div class="bar"><div class="seg" style="width:15%;background:#7ef39a"></div></div>
+
+          <div style="height:8px"></div>
+
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="small">Ecosystem</div><div class="small">25%</div></div>
+          <div class="bar"><div class="seg" style="width:25%;background:#d88bff"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 10px">Distribution Notes</h3>
+        <p class="small">Team tokens are locked for 12 months, then released gradually every 6 months. Marketing and ecosystem funds are publicly tracked wallets.</p>
+        <div style="height:12px"></div>
+        <h4 style="margin:6px 0">Quick Links</h4>
+        <ul class="small">
+          <li>Contract: 0x000...000</li>
+          <li>Audit: Pending</li>
+          <li>Explorer: Etherscan</li>
+          <li>Telegram · Twitter · Docs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="roadmap">
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div class="rm-body">
+          <strong>Q4 2025</strong>
+          <div class="small">Token launch · Liquidity bootstrap · Initial DEX listings</div>
+        </div>
+      </div>
+
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div class="rm-body">
+          <strong>Q1 2026</strong>
+          <div class="small">Audit completed · Cross-chain bridge testing</div>
+        </div>
+      </div>
+
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div class="rm-body">
+          <strong>Q2 2026</strong>
+          <div class="small">Governance v1 · Staking program launch</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="card">
+      <p class="small"><strong>How to buy?</strong> Swap the token using the contract address on a DEX. Always verify the contract address.</p>
+      <p class="small"><strong>Is it audited?</strong> Currently pending audit.</p>
+    </div>
+  </section>
+
+  <section id="swap">
+    <h2>Swap</h2>
+    <div class="card">
+      <p class="small">This demo does not include real swap functionality. In production, link this button to an external DEX or embedded widget.</p>
+      <div style="height:12px"></div>
+      <button id="connectBtn" style="padding:10px 14px;border-radius:10px;background:var(--accent);border:0;font-weight:800;color:#041824">Connect Wallet</button>
+    </div>
+  </section>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div class="small">© <strong>ProjectX</strong> · All rights reserved</div>
+      <div class="small">Terms · Privacy · Contract: 0x000...000</div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  (function(){
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', () => {
+        const open = mobileMenu.style.display === 'flex';
+        mobileMenu.style.display = open ? 'none' : 'flex';
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+          if(window.innerWidth <= 900 && mobileMenu) mobileMenu.style.display = 'none';
+        }
+      });
+    });
+
+    const connectBtn = document.getElementById('connectBtn');
+    if (connectBtn) {
+      connectBtn.addEventListener('click', ()=> {
+        alert('This is a demo button. Implement actual wallet connection using a Web3 library.');
+      });
+    }
+  })();
+</script>
+</body>
+</html>
